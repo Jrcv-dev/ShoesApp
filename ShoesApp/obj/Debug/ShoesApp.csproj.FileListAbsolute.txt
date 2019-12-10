@@ -1,0 +1,15 @@
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\ShoesApp.exe.config
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\ShoesApp.exe
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\ShoesApp.pdb
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\EntityFramework.dll
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\EntityFramework.xml
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.csprojAssemblyReference.cache
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.Form1.resources
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.Properties.Resources.resources
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.csproj.GenerateResource.cache
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.csproj.CoreCompileInputs.cache
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.csproj.CopyComplete
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.exe
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.pdb
