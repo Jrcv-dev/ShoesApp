@@ -147,5 +147,63 @@ namespace Shoes_Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<ACOB_SearchByIdOrName_Result> ACOB_SearchByIdOrName(Nullable<int> id, string nombre)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ACOB_SearchByIdOrName_Result>("ACOB_SearchByIdOrName", idParameter, nombreParameter);
+        }
+    
+        public virtual ObjectResult<DataGrid_FernandoSanchez_Result> DataGrid_FernandoSanchez()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DataGrid_FernandoSanchez_Result>("DataGrid_FernandoSanchez");
+        }
+    
+        public virtual ObjectResult<JEVJ1_BuscaProductoPorID_Result> JEVJ1_BuscaProductoPorID(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JEVJ1_BuscaProductoPorID_Result>("JEVJ1_BuscaProductoPorID", productIdParameter);
+        }
+    
+        public virtual ObjectResult<JEVJ1_BuscaProductoPorNombre_Result> JEVJ1_BuscaProductoPorNombre(string productName)
+        {
+            var productNameParameter = productName != null ?
+                new ObjectParameter("ProductName", productName) :
+                new ObjectParameter("ProductName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JEVJ1_BuscaProductoPorNombre_Result>("JEVJ1_BuscaProductoPorNombre", productNameParameter);
+        }
+    
+        public virtual int JEVJ1_EliminaProductoPorID(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JEVJ1_EliminaProductoPorID", productIdParameter);
+        }
+    
+        public virtual ObjectResult<JRCV1_SearchShoesProduct_Result> JRCV1_SearchShoesProduct(Nullable<int> id, string nombre)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_SearchShoesProduct_Result>("JRCV1_SearchShoesProduct", idParameter, nombreParameter);
+        }
     }
 }
