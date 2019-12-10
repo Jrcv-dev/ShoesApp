@@ -18,7 +18,7 @@ namespace Shoes_Data
         public int IdImageProduct { get; set; }
         public string Decription { get; set; }
         public byte[] Image { get; set; }
-        public string DateUpdate { get; set; }
+        public Nullable<System.DateTime> DateUpdate { get; set; }
         public string IsEnabled { get; set; }
     
         public virtual CatBrands CatBrands { get; set; }

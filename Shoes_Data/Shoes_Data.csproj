@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ACOB_SearchByIdOrName_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CAOE_BUSCAR_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CatBrands.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
@@ -84,10 +90,37 @@
     <Compile Include="database_firewall_rules.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="database_firewall_rules1.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataGrid_FernandoSanchez_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dena_sp_BusquedaProdId_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dena_sp_BusquedaProdNom_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DetailProduct.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="eumc1_getProductByIdOrName_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ImagesProduct.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JEVJ1_BuscaProductoPorID_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JEVJ1_BuscaProductoPorNombre_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JEVJ1_MuestraProductos_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JRCV1_SearchShoesProduct_Result.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Products.cs">
@@ -95,6 +128,15 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Qualification.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEMD_SearchById_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEMD_SearchByName_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEMD_SearchProducts_Result.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ShoesModel.Context.cs">
@@ -111,6 +153,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ShoesModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Show_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SimilarProduct.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
@@ -140,6 +185,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ShoesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ShoesModel.edmx</DependentUpon>
@@ -150,9 +198,6 @@
       <DependentUpon>ShoesModel.edmx</DependentUpon>
       <LastGenOutput>ShoesModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

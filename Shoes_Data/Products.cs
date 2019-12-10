@@ -30,7 +30,7 @@ namespace Shoes_Data
         public Nullable<int> IdColor { get; set; }
         public Nullable<int> IdBrand { get; set; }
         public Nullable<int> IdProvider { get; set; }
-        public int IdCatalog { get; set; }
+        public Nullable<int> IdCatalog { get; set; }
         public string Title { get; set; }
         public string Nombre { get; set; }
         public string Description { get; set; }
@@ -40,7 +40,7 @@ namespace Shoes_Data
         public decimal PriceMember { get; set; }
         public bool IsEnabled { get; set; }
         public string Keywords { get; set; }
-        public System.DateTime DateUpdate { get; set; }
+        public Nullable<System.DateTime> DateUpdate { get; set; }
     
         public virtual CatBrands CatBrands { get; set; }
         public virtual CatCatalogs CatCatalogs { get; set; }

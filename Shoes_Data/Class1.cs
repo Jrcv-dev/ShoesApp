@@ -14,7 +14,7 @@ namespace Shoes_Data
         {
             List<Products> listaProductos = new List<Products>();
             var lista = BDShoes.JRCV1_SearchShoesProduct(id, name);
-            foreach (var item in lista)
+            foreach (var item in lista.ToList())
             {
                 listaProductos.Add(new Products { Id = item.Id,
                     IdType = item.IdType,
@@ -31,6 +31,10 @@ namespace Shoes_Data
                     IsEnabled = item.IsEnabled,
                     Keywords = item.Keywords,
                     DateUpdate = item.DateUpdate});
+                if(item.DateUpdate == null)
+                {
+                    item.DateUpdate = DateTime.Now;
+                }
             }
             return listaProductos;
         }

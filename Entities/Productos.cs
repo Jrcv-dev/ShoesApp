@@ -22,6 +22,6 @@ namespace Entities
         public decimal PrecioMiembro { get; set; }
         public bool IsEnabled { get; set; }
         public string Keywords { get; set; }
-        public DateTime DateUpdate { get; set; }
+        public DateTime? DateUpdate { get; set; }
     }
 }

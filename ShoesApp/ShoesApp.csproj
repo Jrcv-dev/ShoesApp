@@ -90,6 +90,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{cf4d0cdc-9974-410a-9a3c-573b22c3ee8c}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shoes_Bussines\Shoes_Bussines.csproj">
+      <Project>{ced1d1cb-4182-484f-8439-0125584a3b73}</Project>
+      <Name>Shoes_Bussines</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
