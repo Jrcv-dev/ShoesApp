@@ -61,5 +61,11 @@ namespace Shoes_Bussines
             else
                 return false;
         }
+        public bool DisabledProduct(int id, string name)
+        {
+            var capData = new Shoes_Data.CapaData();
+           var estado = capData.DeleteInFormLogic(id, name);
+            return estado;
+        }
     }
 }

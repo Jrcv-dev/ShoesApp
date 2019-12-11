@@ -120,5 +120,18 @@ namespace Shoes_Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_SearchShoesProduct_Result>("JRCV1_SearchShoesProduct", idParameter, nombreParameter);
         }
+    
+        public virtual int JRCV1_DeleteLogicIsEnabled(string nombre, Nullable<int> id)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JRCV1_DeleteLogicIsEnabled", nombreParameter, idParameter);
+        }
     }
 }

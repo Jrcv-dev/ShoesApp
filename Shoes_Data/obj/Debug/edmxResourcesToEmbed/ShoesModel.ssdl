@@ -142,7 +142,7 @@
       <PropertyRef Name="IdImage" />
     </Key>
     <Property Name="IdImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdImageProduct" Type="int" Nullable="false" />
+    <Property Name="IdProduct" Type="int" Nullable="false" />
     <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Image" Type="varbinary(max)" Nullable="false" />
     <Property Name="DateUpdate" Type="datetime" />
@@ -223,18 +223,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
     <Property Name="create_date" Type="datetime" Nullable="false" />
     <Property Name="modify_date" Type="datetime" Nullable="false" />
   </EntityType>
-  <Association Name="FK_CatBrandsImagesProduct">
-    <End Role="CatBrands" Type="Self.CatBrands" Multiplicity="1" />
-    <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CatBrands">
-        <PropertyRef Name="IdBrand" />
-      </Principal>
-      <Dependent Role="ImagesProduct">
-        <PropertyRef Name="IdImageProduct" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CatBrandsProducts">
     <End Role="CatBrands" Type="Self.CatBrands" Multiplicity="0..1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -256,18 +244,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
       </Principal>
       <Dependent Role="CatCatalogs">
         <PropertyRef Name="IdProvider" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CatCatalogsImagesProduct">
-    <End Role="CatCatalogs" Type="Self.CatCatalogs" Multiplicity="1" />
-    <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CatCatalogs">
-        <PropertyRef Name="IdCatalog" />
-      </Principal>
-      <Dependent Role="ImagesProduct">
-        <PropertyRef Name="IdImageProduct" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -423,7 +399,7 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ImagesProduct">
-        <PropertyRef Name="IdImageProduct" />
+        <PropertyRef Name="IdProduct" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -463,6 +439,10 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="JRCV1_DeleteLogicIsEnabled" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="JRCV1_InserNewProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdType" Type="int" Mode="In" />
     <Parameter Name="IdColor" Type="int" Mode="In" />
@@ -512,10 +492,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
     [database_firewall_rules2].[modify_date] AS [modify_date]
     FROM [sys].[database_firewall_rules] AS [database_firewall_rules2]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_CatBrandsImagesProduct" Association="Self.FK_CatBrandsImagesProduct">
-      <End Role="CatBrands" EntitySet="CatBrands" />
-      <End Role="ImagesProduct" EntitySet="ImagesProduct" />
-    </AssociationSet>
     <AssociationSet Name="FK_CatBrandsProducts" Association="Self.FK_CatBrandsProducts">
       <End Role="CatBrands" EntitySet="CatBrands" />
       <End Role="Products" EntitySet="Products" />
@@ -523,10 +499,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_CatCatalogsCatProviders" Association="Self.FK_CatCatalogsCatProviders">
       <End Role="CatProviders" EntitySet="CatProviders" />
       <End Role="CatCatalogs" EntitySet="CatCatalogs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CatCatalogsImagesProduct" Association="Self.FK_CatCatalogsImagesProduct">
-      <End Role="CatCatalogs" EntitySet="CatCatalogs" />
-      <End Role="ImagesProduct" EntitySet="ImagesProduct" />
     </AssociationSet>
     <AssociationSet Name="FK_CatCatalogsProducts" Association="Self.FK_CatCatalogsProducts">
       <End Role="CatCatalogs" EntitySet="CatCatalogs" />

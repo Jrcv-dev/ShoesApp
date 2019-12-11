@@ -17,7 +17,6 @@ namespace Shoes_Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CatCatalogs()
         {
-            this.ImagesProduct = new HashSet<ImagesProduct>();
             this.Products = new HashSet<Products>();
         }
     
@@ -30,8 +29,6 @@ namespace Shoes_Data
         public bool IsEnabled { get; set; }
     
         public virtual CatProviders CatProviders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImagesProduct> ImagesProduct { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Products> Products { get; set; }
     }

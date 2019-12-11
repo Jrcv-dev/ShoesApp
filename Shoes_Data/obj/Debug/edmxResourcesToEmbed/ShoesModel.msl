@@ -144,7 +144,7 @@
       <EntityTypeMapping TypeName="DataProductsModel.ImagesProduct">
         <MappingFragment StoreEntitySet="ImagesProduct">
           <ScalarProperty Name="IdImage" ColumnName="IdImage" />
-          <ScalarProperty Name="IdImageProduct" ColumnName="IdImageProduct" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
           <ScalarProperty Name="Decription" ColumnName="Decription" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
@@ -249,5 +249,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="JRCV1_DeleteLogicIsEnabled" FunctionName="DataProductsModel.Store.JRCV1_DeleteLogicIsEnabled" />
   </EntityContainerMapping>
 </Mapping>

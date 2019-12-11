@@ -16,20 +16,30 @@ namespace ShoesApp
         public Form1()
         {
             InitializeComponent();
+            if (textBox1.Text == null || textBox1.Text == "" || textBox2.Text == "" || textBox2.Text == null)
+            {
+                button4.Visible = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int id;
+            button4.Visible = true;
             var capaBussines = new Shoes_Bussines.CapaNegocio();
             var nombre = textBox2.Text;
-            var id = int.Parse(textBox1.Text);
+            bool res = int.TryParse(textBox1.Text, out id);
             var lista = capaBussines.GetProduct(id, nombre);
+            if(lista.Count == 0)
+            {
+                MessageBox.Show("El producto fue borrado de la bd o nunca existio.");
+            }
             dataGridView1.Rows.Clear();
             foreach (var item in lista)
             {
                 if (item.IsEnabled == false)
                 {
-                    MessageBox.Show("El producto esta descontinuado");
+                    MessageBox.Show("El producto esta descontinuado.");
                 }
                 else
                 {
@@ -49,6 +59,27 @@ namespace ShoesApp
         {
             Form2 f2 = new Form2();
             f2.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var capBussines = new Shoes_Bussines.CapaNegocio();
+            var nombre = textBox2.Text;
+            var id = int.Parse(textBox1.Text);
+            var estado = capBussines.DisabledProduct(id, nombre);
+            if(estado == true)
+            {
+                MessageBox.Show("El producto ha sido deshabilitado");
+            }
+            else
+            {
+                MessageBox.Show("Algo paso, ya fue");
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

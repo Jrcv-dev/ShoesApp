@@ -10,7 +10,6 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
     <Property Name="DateUpdate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="ImagesProduct" Relationship="Self.FK_CatBrandsImagesProduct" FromRole="CatBrands" ToRole="ImagesProduct" />
     <NavigationProperty Name="Products" Relationship="Self.FK_CatBrandsProducts" FromRole="CatBrands" ToRole="Products" />
   </EntityType>
   <EntityType Name="CatCatalogs">
@@ -25,7 +24,6 @@
     <Property Name="DateUpdate" Type="DateTime" Precision="3" />
     <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CatProviders" Relationship="Self.FK_CatCatalogsCatProviders" FromRole="CatCatalogs" ToRole="CatProviders" />
-    <NavigationProperty Name="ImagesProduct" Relationship="Self.FK_CatCatalogsImagesProduct" FromRole="CatCatalogs" ToRole="ImagesProduct" />
     <NavigationProperty Name="Products" Relationship="Self.FK_CatCatalogsProducts" FromRole="CatCatalogs" ToRole="Products" />
   </EntityType>
   <EntityType Name="CatColors">
@@ -163,13 +161,11 @@
       <PropertyRef Name="IdImage" />
     </Key>
     <Property Name="IdImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdImageProduct" Type="Int32" Nullable="false" />
+    <Property Name="IdProduct" Type="Int32" Nullable="false" />
     <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="DateUpdate" Type="DateTime" Precision="3" />
     <Property Name="IsEnabled" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="CatBrands" Relationship="Self.FK_CatBrandsImagesProduct" FromRole="ImagesProduct" ToRole="CatBrands" />
-    <NavigationProperty Name="CatCatalogs" Relationship="Self.FK_CatCatalogsImagesProduct" FromRole="ImagesProduct" ToRole="CatCatalogs" />
     <NavigationProperty Name="Products" Relationship="Self.FK_ProductsImagesProduct" FromRole="ImagesProduct" ToRole="Products" />
   </EntityType>
   <EntityType Name="Products">
@@ -261,18 +257,6 @@
     <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
-  <Association Name="FK_CatBrandsImagesProduct">
-    <End Role="CatBrands" Type="Self.CatBrands" Multiplicity="1" />
-    <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CatBrands">
-        <PropertyRef Name="IdBrand" />
-      </Principal>
-      <Dependent Role="ImagesProduct">
-        <PropertyRef Name="IdImageProduct" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CatBrandsProducts">
     <End Role="CatBrands" Type="Self.CatBrands" Multiplicity="0..1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -294,18 +278,6 @@
       </Principal>
       <Dependent Role="CatCatalogs">
         <PropertyRef Name="IdProvider" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CatCatalogsImagesProduct">
-    <End Role="CatCatalogs" Type="Self.CatCatalogs" Multiplicity="1" />
-    <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CatCatalogs">
-        <PropertyRef Name="IdCatalog" />
-      </Principal>
-      <Dependent Role="ImagesProduct">
-        <PropertyRef Name="IdImageProduct" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -461,7 +433,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ImagesProduct">
-        <PropertyRef Name="IdImageProduct" />
+        <PropertyRef Name="IdProduct" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -521,10 +493,6 @@
     <EntitySet Name="SizeForProduct" EntityType="Self.SizeForProduct" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="database_firewall_rules2" EntityType="Self.database_firewall_rules2" />
-    <AssociationSet Name="FK_CatBrandsImagesProduct" Association="Self.FK_CatBrandsImagesProduct">
-      <End Role="CatBrands" EntitySet="CatBrands" />
-      <End Role="ImagesProduct" EntitySet="ImagesProduct" />
-    </AssociationSet>
     <AssociationSet Name="FK_CatBrandsProducts" Association="Self.FK_CatBrandsProducts">
       <End Role="CatBrands" EntitySet="CatBrands" />
       <End Role="Products" EntitySet="Products" />
@@ -532,10 +500,6 @@
     <AssociationSet Name="FK_CatCatalogsCatProviders" Association="Self.FK_CatCatalogsCatProviders">
       <End Role="CatProviders" EntitySet="CatProviders" />
       <End Role="CatCatalogs" EntitySet="CatCatalogs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CatCatalogsImagesProduct" Association="Self.FK_CatCatalogsImagesProduct">
-      <End Role="CatCatalogs" EntitySet="CatCatalogs" />
-      <End Role="ImagesProduct" EntitySet="ImagesProduct" />
     </AssociationSet>
     <AssociationSet Name="FK_CatCatalogsProducts" Association="Self.FK_CatCatalogsProducts">
       <End Role="CatCatalogs" EntitySet="CatCatalogs" />
@@ -620,6 +584,10 @@
     <FunctionImport Name="JRCV1_SearchShoesProduct" ReturnType="Collection(DataProductsModel.JRCV1_SearchShoesProduct_Result)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="JRCV1_DeleteLogicIsEnabled">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="JRCV1_SearchShoesProduct_Result">

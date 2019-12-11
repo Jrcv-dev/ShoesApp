@@ -63,6 +63,18 @@ namespace Shoes_Data
                 return false;
             }
         }
+        public bool DeleteInFormLogic(int id, string name)
+        {
+            try
+            {
+                BDShoes.JRCV1_DeleteLogicIsEnabled(name, id);
+                return true;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
 
     }
 }
