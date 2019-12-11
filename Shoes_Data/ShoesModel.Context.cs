@@ -37,6 +37,7 @@ namespace Shoes_Data
         public virtual DbSet<CatTypeProduct> CatTypeProduct { get; set; }
         public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
+        public virtual DbSet<database_firewall_rules1> database_firewall_rules1 { get; set; }
         public virtual DbSet<DetailProduct> DetailProduct { get; set; }
         public virtual DbSet<ImagesProduct> ImagesProduct { get; set; }
         public virtual DbSet<Products> Products { get; set; }
@@ -44,59 +45,10 @@ namespace Shoes_Data
         public virtual DbSet<SimilarProduct> SimilarProduct { get; set; }
         public virtual DbSet<SizeForProduct> SizeForProduct { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<database_firewall_rules1> database_firewall_rules1 { get; set; }
+        public virtual DbSet<database_firewall_rules2> database_firewall_rules2 { get; set; }
     
-        public virtual ObjectResult<ACOB_SearchByIdOrName_Result> ACOB_SearchByIdOrName(Nullable<int> id, string nombre)
+        public virtual int JRCV1_InserNewProduct(Nullable<int> idType, Nullable<int> idColor, Nullable<int> idBrand, Nullable<int> idProvider, string tittle, string nombre, string descripcion, string observations, Nullable<decimal> priceDistributor, Nullable<decimal> priceClient, Nullable<decimal> priceMember, Nullable<bool> isEnabled, string keywords, Nullable<System.DateTime> dateUpdate)
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ACOB_SearchByIdOrName_Result>("ACOB_SearchByIdOrName", idParameter, nombreParameter);
-        }
-    
-        public virtual ObjectResult<CAOE_BUSCAR_Result> CAOE_BUSCAR(Nullable<int> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CAOE_BUSCAR_Result>("CAOE_BUSCAR", iDParameter);
-        }
-    
-        public virtual ObjectResult<DataGrid_FernandoSanchez_Result> DataGrid_FernandoSanchez()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DataGrid_FernandoSanchez_Result>("DataGrid_FernandoSanchez");
-        }
-    
-        public virtual ObjectResult<dena_sp_BusquedaProdId_Result> dena_sp_BusquedaProdId(string id)
-        {
-            var idParameter = id != null ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<dena_sp_BusquedaProdId_Result>("dena_sp_BusquedaProdId", idParameter);
-        }
-    
-        public virtual ObjectResult<dena_sp_BusquedaProdNom_Result> dena_sp_BusquedaProdNom(string nombre)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<dena_sp_BusquedaProdNom_Result>("dena_sp_BusquedaProdNom", nombreParameter);
-        }
-    
-        public virtual int dena_sp_InsertProd(Nullable<int> id, Nullable<int> idType, Nullable<int> idColor, Nullable<int> idBrand, Nullable<int> idProvider, Nullable<int> idCatalog, string title, string nombre, string description, string observations, Nullable<decimal> priceDistributor, Nullable<decimal> priceClient, Nullable<decimal> priceMember, Nullable<bool> isEnabled, string keywords, Nullable<System.DateTime> dateUpdate)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
             var idTypeParameter = idType.HasValue ?
                 new ObjectParameter("IdType", idType) :
                 new ObjectParameter("IdType", typeof(int));
@@ -113,21 +65,17 @@ namespace Shoes_Data
                 new ObjectParameter("IdProvider", idProvider) :
                 new ObjectParameter("IdProvider", typeof(int));
     
-            var idCatalogParameter = idCatalog.HasValue ?
-                new ObjectParameter("IdCatalog", idCatalog) :
-                new ObjectParameter("IdCatalog", typeof(int));
-    
-            var titleParameter = title != null ?
-                new ObjectParameter("Title", title) :
-                new ObjectParameter("Title", typeof(string));
+            var tittleParameter = tittle != null ?
+                new ObjectParameter("Tittle", tittle) :
+                new ObjectParameter("Tittle", typeof(string));
     
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
                 new ObjectParameter("Nombre", typeof(string));
     
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
     
             var observationsParameter = observations != null ?
                 new ObjectParameter("Observations", observations) :
@@ -157,195 +105,7 @@ namespace Shoes_Data
                 new ObjectParameter("DateUpdate", dateUpdate) :
                 new ObjectParameter("DateUpdate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("dena_sp_InsertProd", idParameter, idTypeParameter, idColorParameter, idBrandParameter, idProviderParameter, idCatalogParameter, titleParameter, nombreParameter, descriptionParameter, observationsParameter, priceDistributorParameter, priceClientParameter, priceMemberParameter, isEnabledParameter, keywordsParameter, dateUpdateParameter);
-        }
-    
-        public virtual ObjectResult<eumc1_getProductByIdOrName_Result> eumc1_getProductByIdOrName(Nullable<int> id, string nombre)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<eumc1_getProductByIdOrName_Result>("eumc1_getProductByIdOrName", idParameter, nombreParameter);
-        }
-    
-        public virtual ObjectResult<string> FAVV_BuscaNombrePorId(Nullable<int> elId)
-        {
-            var elIdParameter = elId.HasValue ?
-                new ObjectParameter("elId", elId) :
-                new ObjectParameter("elId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("FAVV_BuscaNombrePorId", elIdParameter);
-        }
-    
-        public virtual int JEVJ1_ActualizaProducto(Nullable<int> productId, Nullable<int> idType, Nullable<int> idColor, Nullable<int> idBrand, Nullable<int> idProvider, Nullable<int> idCatalog, string title, string nombre, string description, string observations, Nullable<decimal> priceDistributor, Nullable<decimal> priceClient, Nullable<decimal> priceMember, Nullable<bool> isEnabled, string keywords, Nullable<System.DateTime> dataUpdate)
-        {
-            var productIdParameter = productId.HasValue ?
-                new ObjectParameter("ProductId", productId) :
-                new ObjectParameter("ProductId", typeof(int));
-    
-            var idTypeParameter = idType.HasValue ?
-                new ObjectParameter("IdType", idType) :
-                new ObjectParameter("IdType", typeof(int));
-    
-            var idColorParameter = idColor.HasValue ?
-                new ObjectParameter("IdColor", idColor) :
-                new ObjectParameter("IdColor", typeof(int));
-    
-            var idBrandParameter = idBrand.HasValue ?
-                new ObjectParameter("IdBrand", idBrand) :
-                new ObjectParameter("IdBrand", typeof(int));
-    
-            var idProviderParameter = idProvider.HasValue ?
-                new ObjectParameter("IdProvider", idProvider) :
-                new ObjectParameter("IdProvider", typeof(int));
-    
-            var idCatalogParameter = idCatalog.HasValue ?
-                new ObjectParameter("IdCatalog", idCatalog) :
-                new ObjectParameter("IdCatalog", typeof(int));
-    
-            var titleParameter = title != null ?
-                new ObjectParameter("Title", title) :
-                new ObjectParameter("Title", typeof(string));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
-    
-            var observationsParameter = observations != null ?
-                new ObjectParameter("Observations", observations) :
-                new ObjectParameter("Observations", typeof(string));
-    
-            var priceDistributorParameter = priceDistributor.HasValue ?
-                new ObjectParameter("PriceDistributor", priceDistributor) :
-                new ObjectParameter("PriceDistributor", typeof(decimal));
-    
-            var priceClientParameter = priceClient.HasValue ?
-                new ObjectParameter("PriceClient", priceClient) :
-                new ObjectParameter("PriceClient", typeof(decimal));
-    
-            var priceMemberParameter = priceMember.HasValue ?
-                new ObjectParameter("PriceMember", priceMember) :
-                new ObjectParameter("PriceMember", typeof(decimal));
-    
-            var isEnabledParameter = isEnabled.HasValue ?
-                new ObjectParameter("IsEnabled", isEnabled) :
-                new ObjectParameter("IsEnabled", typeof(bool));
-    
-            var keywordsParameter = keywords != null ?
-                new ObjectParameter("Keywords", keywords) :
-                new ObjectParameter("Keywords", typeof(string));
-    
-            var dataUpdateParameter = dataUpdate.HasValue ?
-                new ObjectParameter("DataUpdate", dataUpdate) :
-                new ObjectParameter("DataUpdate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JEVJ1_ActualizaProducto", productIdParameter, idTypeParameter, idColorParameter, idBrandParameter, idProviderParameter, idCatalogParameter, titleParameter, nombreParameter, descriptionParameter, observationsParameter, priceDistributorParameter, priceClientParameter, priceMemberParameter, isEnabledParameter, keywordsParameter, dataUpdateParameter);
-        }
-    
-        public virtual ObjectResult<JEVJ1_BuscaProductoPorID_Result> JEVJ1_BuscaProductoPorID(Nullable<int> productId)
-        {
-            var productIdParameter = productId.HasValue ?
-                new ObjectParameter("ProductId", productId) :
-                new ObjectParameter("ProductId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JEVJ1_BuscaProductoPorID_Result>("JEVJ1_BuscaProductoPorID", productIdParameter);
-        }
-    
-        public virtual ObjectResult<JEVJ1_BuscaProductoPorNombre_Result> JEVJ1_BuscaProductoPorNombre(string productName)
-        {
-            var productNameParameter = productName != null ?
-                new ObjectParameter("ProductName", productName) :
-                new ObjectParameter("ProductName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JEVJ1_BuscaProductoPorNombre_Result>("JEVJ1_BuscaProductoPorNombre", productNameParameter);
-        }
-    
-        public virtual int JEVJ1_EliminaProductoPorID(Nullable<int> productId)
-        {
-            var productIdParameter = productId.HasValue ?
-                new ObjectParameter("ProductId", productId) :
-                new ObjectParameter("ProductId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JEVJ1_EliminaProductoPorID", productIdParameter);
-        }
-    
-        public virtual int JEVJ1_InsertaNuevoProducto(Nullable<int> idType, Nullable<int> idColor, Nullable<int> idBrand, Nullable<int> idProvider, Nullable<int> idCatalog, string title, string nombre, string description, string observations, Nullable<decimal> priceDistributor, Nullable<decimal> priceClient, Nullable<decimal> priceMember, Nullable<bool> isEnabled, string keywords, Nullable<System.DateTime> dataUpdate)
-        {
-            var idTypeParameter = idType.HasValue ?
-                new ObjectParameter("IdType", idType) :
-                new ObjectParameter("IdType", typeof(int));
-    
-            var idColorParameter = idColor.HasValue ?
-                new ObjectParameter("IdColor", idColor) :
-                new ObjectParameter("IdColor", typeof(int));
-    
-            var idBrandParameter = idBrand.HasValue ?
-                new ObjectParameter("IdBrand", idBrand) :
-                new ObjectParameter("IdBrand", typeof(int));
-    
-            var idProviderParameter = idProvider.HasValue ?
-                new ObjectParameter("IdProvider", idProvider) :
-                new ObjectParameter("IdProvider", typeof(int));
-    
-            var idCatalogParameter = idCatalog.HasValue ?
-                new ObjectParameter("IdCatalog", idCatalog) :
-                new ObjectParameter("IdCatalog", typeof(int));
-    
-            var titleParameter = title != null ?
-                new ObjectParameter("Title", title) :
-                new ObjectParameter("Title", typeof(string));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
-    
-            var observationsParameter = observations != null ?
-                new ObjectParameter("Observations", observations) :
-                new ObjectParameter("Observations", typeof(string));
-    
-            var priceDistributorParameter = priceDistributor.HasValue ?
-                new ObjectParameter("PriceDistributor", priceDistributor) :
-                new ObjectParameter("PriceDistributor", typeof(decimal));
-    
-            var priceClientParameter = priceClient.HasValue ?
-                new ObjectParameter("PriceClient", priceClient) :
-                new ObjectParameter("PriceClient", typeof(decimal));
-    
-            var priceMemberParameter = priceMember.HasValue ?
-                new ObjectParameter("PriceMember", priceMember) :
-                new ObjectParameter("PriceMember", typeof(decimal));
-    
-            var isEnabledParameter = isEnabled.HasValue ?
-                new ObjectParameter("IsEnabled", isEnabled) :
-                new ObjectParameter("IsEnabled", typeof(bool));
-    
-            var keywordsParameter = keywords != null ?
-                new ObjectParameter("Keywords", keywords) :
-                new ObjectParameter("Keywords", typeof(string));
-    
-            var dataUpdateParameter = dataUpdate.HasValue ?
-                new ObjectParameter("DataUpdate", dataUpdate) :
-                new ObjectParameter("DataUpdate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JEVJ1_InsertaNuevoProducto", idTypeParameter, idColorParameter, idBrandParameter, idProviderParameter, idCatalogParameter, titleParameter, nombreParameter, descriptionParameter, observationsParameter, priceDistributorParameter, priceClientParameter, priceMemberParameter, isEnabledParameter, keywordsParameter, dataUpdateParameter);
-        }
-    
-        public virtual ObjectResult<JEVJ1_MuestraProductos_Result> JEVJ1_MuestraProductos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JEVJ1_MuestraProductos_Result>("JEVJ1_MuestraProductos");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JRCV1_InserNewProduct", idTypeParameter, idColorParameter, idBrandParameter, idProviderParameter, tittleParameter, nombreParameter, descripcionParameter, observationsParameter, priceDistributorParameter, priceClientParameter, priceMemberParameter, isEnabledParameter, keywordsParameter, dateUpdateParameter);
         }
     
         public virtual ObjectResult<JRCV1_SearchShoesProduct_Result> JRCV1_SearchShoesProduct(Nullable<int> id, string nombre)
@@ -359,145 +119,6 @@ namespace Shoes_Data
                 new ObjectParameter("Nombre", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_SearchShoesProduct_Result>("JRCV1_SearchShoesProduct", idParameter, nombreParameter);
-        }
-    
-        public virtual ObjectResult<SEMD_SearchById_Result> SEMD_SearchById(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SEMD_SearchById_Result>("SEMD_SearchById", idParameter);
-        }
-    
-        public virtual ObjectResult<SEMD_SearchByName_Result> SEMD_SearchByName(string nombre)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SEMD_SearchByName_Result>("SEMD_SearchByName", nombreParameter);
-        }
-    
-        public virtual ObjectResult<SEMD_SearchProducts_Result> SEMD_SearchProducts(Nullable<int> id, string nombre)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SEMD_SearchProducts_Result>("SEMD_SearchProducts", idParameter, nombreParameter);
-        }
-    
-        public virtual ObjectResult<Show_Result> Show()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Show_Result>("Show");
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

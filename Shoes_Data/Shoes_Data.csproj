@@ -53,12 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ACOB_SearchByIdOrName_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CAOE_BUSCAR_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="CatBrands.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
@@ -93,31 +87,13 @@
     <Compile Include="database_firewall_rules1.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataGrid_FernandoSanchez_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dena_sp_BusquedaProdId_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dena_sp_BusquedaProdNom_Result.cs">
+    <Compile Include="database_firewall_rules2.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DetailProduct.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="eumc1_getProductByIdOrName_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ImagesProduct.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="JEVJ1_BuscaProductoPorID_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="JEVJ1_BuscaProductoPorNombre_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="JEVJ1_MuestraProductos_Result.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="JRCV1_SearchShoesProduct_Result.cs">
@@ -128,15 +104,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Qualification.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SEMD_SearchById_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SEMD_SearchByName_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SEMD_SearchProducts_Result.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ShoesModel.Context.cs">
@@ -154,19 +121,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShoesModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Show_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="SimilarProduct.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SizeForProduct.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ShoesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">

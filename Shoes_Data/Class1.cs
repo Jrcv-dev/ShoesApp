@@ -31,12 +31,38 @@ namespace Shoes_Data
                     IsEnabled = item.IsEnabled,
                     Keywords = item.Keywords,
                     DateUpdate = item.DateUpdate});
-                if(item.DateUpdate == null)
-                {
+                //if(item.DateUpdate == null)
+               // {
                     item.DateUpdate = DateTime.Now;
-                }
+               // }
             }
             return listaProductos;
         }
+        public bool InsertData(Products obj) 
+        {
+            try
+            {
+                BDShoes.JRCV1_InserNewProduct(obj.IdType,
+                    obj.IdColor,
+                    obj.IdBrand,
+                    obj.IdProvider,
+                    obj.Title,
+                    obj.Nombre,
+                    obj.Description,
+                    obj.Observations,
+                    obj.PriceDistributor,
+                    obj.PriceClient,
+                    obj.PriceMember,
+                    obj.IsEnabled,
+                    obj.Keywords,
+                    obj.DateUpdate);
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

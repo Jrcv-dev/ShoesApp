@@ -35,14 +35,14 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tittle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,33 +113,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(880, 219);
             this.dataGridView1.TabIndex = 6;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(898, 215);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 45);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Insertar Nuevo Producto";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(928, 297);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 36);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Editar";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(928, 364);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(114, 44);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Eliminar";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // Id
             // 
             this.Id.HeaderText = "ID";
@@ -164,6 +137,34 @@
             // 
             this.PrecioCliente.HeaderText = "Precio a Cliente";
             this.PrecioCliente.Name = "PrecioCliente";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(898, 215);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(195, 45);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Insertar Nuevo Producto";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(928, 297);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(114, 36);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Editar";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(928, 364);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(114, 44);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Eliminar";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

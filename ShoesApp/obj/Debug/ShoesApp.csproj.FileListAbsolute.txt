@@ -22,3 +22,4 @@ C:\Users\Curso\source\repos\ShoesApp\ShoesApp\bin\Debug\Shoes_Data.dll.config
 C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.csproj.CopyComplete
 C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.exe
 C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.pdb
+C:\Users\Curso\source\repos\ShoesApp\ShoesApp\obj\Debug\ShoesApp.Form2.resources

@@ -27,15 +27,28 @@ namespace ShoesApp
             dataGridView1.Rows.Clear();
             foreach (var item in lista)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = item.id });
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = item.Nombre });
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = item.Tittle });
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = item.Descripcion });
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = item.PrecioCliente});
-                dataGridView1.Rows.Add(row);
+                if (item.IsEnabled == false)
+                {
+                    MessageBox.Show("El producto esta descontinuado");
+                }
+                else
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = item.id });
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = item.Nombre });
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = item.Tittle });
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = item.Descripcion });
+                    row.Cells.Add(new DataGridViewTextBoxCell { Value = item.PrecioCliente });
+                    dataGridView1.Rows.Add(row);
+                }
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
         }
     }
 }

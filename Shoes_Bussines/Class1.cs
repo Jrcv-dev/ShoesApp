@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
+using Shoes_Data;
 
 namespace Shoes_Bussines
 {
@@ -35,6 +36,30 @@ namespace Shoes_Bussines
                 });
             }
             return Producto;
+        }
+        public bool InsertIntoTable(Productos obj)
+        {
+            var capData = new Shoes_Data.CapaData();
+            Products p = new Products();
+            p.IdType = obj.idType;
+            p.IdColor = obj.idColor;
+            p.IdBrand = obj.idBrand;
+            p.IdProvider = obj.idProvider;
+            p.Title = obj.Tittle;
+            p.Nombre = obj.Nombre;
+            p.Description = obj.Descripcion;
+            p.Observations = obj.Observaciones;
+            p.PriceDistributor = obj.PrecioDistribuidor;
+            p.PriceClient = obj.PrecioCliente;
+            p.PriceMember = obj.PrecioMiembro;
+            p.IsEnabled = obj.IsEnabled;
+            p.Keywords = obj.Keywords;
+            p.DateUpdate = obj.DateUpdate;
+            var estado = capData.InsertData(p);
+            if (estado == true)
+                return true;
+            else
+                return false;
         }
     }
 }
