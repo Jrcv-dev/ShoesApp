@@ -448,6 +448,7 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
     <Parameter Name="IdColor" Type="int" Mode="In" />
     <Parameter Name="IdBrand" Type="int" Mode="In" />
     <Parameter Name="IdProvider" Type="int" Mode="In" />
+    <Parameter Name="IdCatalog" Type="int" Mode="In" />
     <Parameter Name="Tittle" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="Nombre" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="Descripcion" Type="nvarchar(max)" Mode="In" />

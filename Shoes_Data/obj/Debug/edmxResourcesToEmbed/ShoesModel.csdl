@@ -565,11 +565,16 @@
       <End Role="Products" EntitySet="Products" />
       <End Role="Qualification" EntitySet="Qualification" />
     </AssociationSet>
+    <FunctionImport Name="JRCV1_DeleteLogicIsEnabled">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="JRCV1_InserNewProduct">
       <Parameter Name="IdType" Mode="In" Type="Int32" />
       <Parameter Name="IdColor" Mode="In" Type="Int32" />
       <Parameter Name="IdBrand" Mode="In" Type="Int32" />
       <Parameter Name="IdProvider" Mode="In" Type="Int32" />
+      <Parameter Name="IdCatalog" Mode="In" Type="Int32" />
       <Parameter Name="Tittle" Mode="In" Type="String" />
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -584,10 +589,6 @@
     <FunctionImport Name="JRCV1_SearchShoesProduct" ReturnType="Collection(DataProductsModel.JRCV1_SearchShoesProduct_Result)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="Nombre" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="JRCV1_DeleteLogicIsEnabled">
-      <Parameter Name="Nombre" Mode="In" Type="String" />
-      <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="JRCV1_SearchShoesProduct_Result">

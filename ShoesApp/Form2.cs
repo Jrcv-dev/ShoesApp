@@ -27,6 +27,7 @@ namespace ShoesApp
             agregarProducto.idColor = int.Parse(numericUpDown2.Text);
             agregarProducto.idBrand = int.Parse(numericUpDown3.Text);
             agregarProducto.idProvider = int.Parse(numericUpDown4.Text);
+            agregarProducto.idCatalog = int.Parse(numericUpDown5.Text);
             agregarProducto.Tittle = textBox1.Text;
             agregarProducto.Nombre = textBox2.Text;
             agregarProducto.Descripcion = textBox3.Text;

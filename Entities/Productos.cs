@@ -13,6 +13,7 @@ namespace Entities
         public int? idColor { get; set; }
         public int? idBrand { get; set; }
         public int? idProvider { get; set; }
+        public int? idCatalog { get; set; }
         public string Tittle { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }

@@ -45,6 +45,7 @@ namespace Shoes_Bussines
             p.IdColor = obj.idColor;
             p.IdBrand = obj.idBrand;
             p.IdProvider = obj.idProvider;
+            p.IdCatalog = obj.idCatalog;
             p.Title = obj.Tittle;
             p.Nombre = obj.Nombre;
             p.Description = obj.Descripcion;
@@ -67,5 +68,6 @@ namespace Shoes_Bussines
            var estado = capData.DeleteInFormLogic(id, name);
             return estado;
         }
+
     }
 }

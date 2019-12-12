@@ -46,6 +46,7 @@ namespace Shoes_Data
                     obj.IdColor,
                     obj.IdBrand,
                     obj.IdProvider,
+                    obj.IdCatalog,
                     obj.Title,
                     obj.Nombre,
                     obj.Description,
@@ -75,6 +76,7 @@ namespace Shoes_Data
                 throw;
             }
         }
+
 
     }
 }
