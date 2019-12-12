@@ -590,6 +590,15 @@
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="Nombre" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="JRCV1_GetColors" ReturnType="Collection(DataProductsModel.JRCV1_GetColors_Result)" />
+    <FunctionImport Name="JRCV1_GetSizes" ReturnType="Collection(DataProductsModel.JRCV1_GetSizes_Result)" />
+    <FunctionImport Name="JRCV1_UpdateProduct">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="IdColor" Mode="In" Type="Int32" />
+      <Parameter Name="IdCatalog" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="JRCV1_SearchShoesProduct_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -608,5 +617,20 @@
     <Property Type="Boolean" Name="IsEnabled" Nullable="false" />
     <Property Type="String" Name="Keywords" Nullable="true" />
     <Property Type="DateTime" Name="DateUpdate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="JRCV1_GetColors_Result">
+    <Property Type="Int32" Name="IdColor" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="String" Name="HexaDecimal" Nullable="false" />
+    <Property Type="Boolean" Name="IsEnable" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="JRCV1_GetSizes_Result">
+    <Property Type="Int32" Name="IdSize" Nullable="false" />
+    <Property Type="Int32" Name="IdType" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" />
+    <Property Type="String" Name="Unity" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="String" Name="Value" Nullable="false" />
   </ComplexType>
 </Schema>

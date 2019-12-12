@@ -76,7 +76,51 @@ namespace Shoes_Data
                 throw;
             }
         }
-
-
+        public List<CatColors> GetColors()
+        {
+            List<CatColors> colores = new List<CatColors>();
+            var colors = BDShoes.JRCV1_GetColors();
+            foreach (var item in colors)
+            {
+                colores.Add(new CatColors {IdColor= item.IdColor,
+                Name = item.Name,
+                Description = item.Description,
+                HexaDecimal = item.HexaDecimal,
+                IsEnable = item.IsEnable});
+            }
+            return colores;
+        }
+        public List<CatSizes> GetSizes()
+        {
+            List<CatSizes> sizes = new List<CatSizes>();
+            var tallas = BDShoes.JRCV1_GetSizes();
+            foreach (var item in tallas)
+            {
+                sizes.Add(new CatSizes { IdSize = item.IdSize,
+                IdType = item.IdType,
+                Code = item.Code,
+                Unity = item.Unity,
+                Description = item.Description,
+                Value = item.Value});
+            }
+            return sizes;
+        }
+        public bool InsertUpdateOfProduct(Products obj)
+        {
+            try
+            {//cambiar el store procedure para que solo reciba los campos de nombre, colores y tallas existentes.
+                BDShoes.JRCV1_UpdateProduct(obj.Id,
+                    obj.IdColor,
+                    obj.IdCatalog,
+                    obj.Nombre,
+                    obj.Description);
+                return true;
+        }
+            catch (System.Exception e)
+            {
+                
+                return false;
+            }
+}
     }
 }

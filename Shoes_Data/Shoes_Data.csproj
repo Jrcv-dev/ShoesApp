@@ -96,6 +96,12 @@
     <Compile Include="ImagesProduct.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="JRCV1_GetColors_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JRCV1_GetSizes_Result.cs">
+      <DependentUpon>ShoesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="JRCV1_SearchShoesProduct_Result.cs">
       <DependentUpon>ShoesModel.tt</DependentUpon>
     </Compile>

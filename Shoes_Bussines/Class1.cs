@@ -17,7 +17,8 @@ namespace Shoes_Bussines
             var listaProducts = capaData.Search(id, name);
             foreach (var item in listaProducts)
             {
-                Producto.Add(new Productos {
+                Producto.Add(new Productos
+                {
                     id = item.Id,
                     idType = item.IdType,
                     idColor = item.IdColor,
@@ -65,9 +66,64 @@ namespace Shoes_Bussines
         public bool DisabledProduct(int id, string name)
         {
             var capData = new Shoes_Data.CapaData();
-           var estado = capData.DeleteInFormLogic(id, name);
+            var estado = capData.DeleteInFormLogic(id, name);
             return estado;
         }
-
+        public List<Colores> ObtenerColores()
+        {
+            var capData = new Shoes_Data.CapaData();
+            List<Colores> colores = new List<Colores>();
+            var listaC = capData.GetColors();
+            foreach (var item in listaC)
+            {
+                colores.Add(new Colores
+                {
+                    idColor = item.IdColor,
+                    Name = item.Name,
+                    Description = item.Description,
+                    HexaDecimal = item.HexaDecimal,
+                    isEnable = item.IsEnable
+                });
+            }
+            return colores;
+        }
+        public List<Sizes> ObtenerTallas()
+        {
+            var capData = new Shoes_Data.CapaData();
+            List<Sizes> sizes = new List<Sizes>();
+            var listSize = capData.GetSizes();
+            foreach (var item in listSize)
+            {
+                sizes.Add(new Sizes
+                {
+                    idSize = item.IdSize,
+                    idType = item.IdType,
+                    Code = item.Code,
+                    Unity = item.Unity,
+                    Description = item.Description,
+                    Value = item.Value
+                });
+            }
+            return sizes;
+        }
+        public bool UpdateProduct(Productos obj)
+        {
+            var capData = new Shoes_Data.CapaData();
+            Products p = new Products();
+            try
+            {
+                p.Id = obj.id;
+                p.IdColor = obj.idColor;
+                p.IdCatalog = obj.idCatalog;
+                p.Nombre = obj.Nombre;
+                p.Description = obj.Descripcion;
+                var a = capData.InsertUpdateOfProduct(p);
+                return a;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
     }
 }
