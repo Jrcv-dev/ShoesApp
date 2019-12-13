@@ -181,5 +181,30 @@ namespace Shoes_Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JRCV1_UpdateProduct", idParameter, idColorParameter, idCatalogParameter, nombreParameter, descriptionParameter);
         }
+    
+        public virtual int JRCV1_InsertImages(Nullable<int> idProduct, string descripcion, byte[] image, Nullable<System.DateTime> dateUpdate, Nullable<bool> isEnable)
+        {
+            var idProductParameter = idProduct.HasValue ?
+                new ObjectParameter("idProduct", idProduct) :
+                new ObjectParameter("idProduct", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var imageParameter = image != null ?
+                new ObjectParameter("Image", image) :
+                new ObjectParameter("Image", typeof(byte[]));
+    
+            var dateUpdateParameter = dateUpdate.HasValue ?
+                new ObjectParameter("DateUpdate", dateUpdate) :
+                new ObjectParameter("DateUpdate", typeof(System.DateTime));
+    
+            var isEnableParameter = isEnable.HasValue ?
+                new ObjectParameter("IsEnable", isEnable) :
+                new ObjectParameter("IsEnable", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JRCV1_InsertImages", idProductParameter, descripcionParameter, imageParameter, dateUpdateParameter, isEnableParameter);
+        }
     }
 }

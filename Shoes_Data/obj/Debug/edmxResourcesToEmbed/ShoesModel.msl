@@ -286,5 +286,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="JRCV1_UpdateProduct" FunctionName="DataProductsModel.Store.JRCV1_UpdateProduct" />
+    <FunctionImportMapping FunctionImportName="JRCV1_InsertImages" FunctionName="DataProductsModel.Store.JRCV1_InsertImages" />
   </EntityContainerMapping>
 </Mapping>

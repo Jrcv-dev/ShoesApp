@@ -142,5 +142,17 @@ namespace Shoes_Bussines
             }
             return Limages;
         }
+        public bool InsertarImagen(Images obj)
+        {
+            var capData = new Shoes_Data.CapaData();
+            ImagesProduct Iproduct = new ImagesProduct();
+            Iproduct.IdProduct = obj.idProducto;
+            Iproduct.Image = obj.Image;
+            Iproduct.Decription = obj.Descripcion;
+            Iproduct.DateUpdate = obj.DateUpdate;
+            Iproduct.IsEnabled = obj.isEnabled;
+            var estado = capData.InsertImages(Iproduct);
+            return estado;
+        }
     }
 }

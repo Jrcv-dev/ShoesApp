@@ -146,5 +146,21 @@ namespace Shoes_Data
             }
             return Limages;
         }
+        public bool InsertImages(ImagesProduct obj)
+        {
+            try
+            {
+                BDShoes.JRCV1_InsertImages(obj.IdProduct,
+                    obj.Decription,
+                    obj.Image,
+                    obj.DateUpdate,
+                    obj.IsEnabled);
+                return true;
+            }
+            catch(System.Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

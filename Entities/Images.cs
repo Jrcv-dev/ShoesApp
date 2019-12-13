@@ -12,7 +12,7 @@ namespace Entities
         public int idProducto { get; set; }
         public string Descripcion { get; set; }
         public byte[] Image { get; set; }
-        public DateTime? DateUpdate { get; set; }
+        public DateTime DateUpdate { get; set; }
         public bool isEnabled { get; set; }
     }
 }

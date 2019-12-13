@@ -602,6 +602,13 @@
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Description" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="JRCV1_InsertImages">
+      <Parameter Name="idProduct" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Image" Mode="In" Type="Binary" />
+      <Parameter Name="DateUpdate" Mode="In" Type="DateTime" />
+      <Parameter Name="IsEnable" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="JRCV1_GetColors_Result">
     <Property Type="Int32" Name="IdColor" Nullable="false" />

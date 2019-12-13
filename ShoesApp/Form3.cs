@@ -50,6 +50,11 @@ namespace ShoesApp
                 flowLayoutPanel1.Controls.Add(p);
 
             }
+            label7.Visible = false;
+            label8.Visible = false;
+            richTextBox2.Visible = false;
+            textBox3.Visible = false;
+            button3.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -124,6 +129,40 @@ namespace ShoesApp
             catch (Exception ex)
             {
                 MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido");
+            }
+            label7.Visible = true;
+            label8.Visible = true;
+            richTextBox2.Visible = true;
+            textBox3.Visible = true;
+            button3.Visible = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Images image = new Images();
+            image.Descripcion = richTextBox2.Text;
+            image.DateUpdate = DateTime.Now;
+            image.idProducto = ID;
+            if (textBox3.Text == "0")
+            {
+                image.isEnabled = false;
+            }
+            else if (textBox3.Text == "1")
+            {
+                image.isEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Ingrese un 0 si es descontinuado y 1 si esta en existencia.");
+            }
+            MemoryStream a = new MemoryStream();
+            pictureBox1.Image.Save(a, System.Drawing.Imaging.ImageFormat.Jpeg);
+            image.Image=a.ToArray();
+            var capBussines = new Shoes_Bussines.CapaNegocio();
+            var estado = capBussines.InsertarImagen(image);
+            if(estado == true)
+            {
+                MessageBox.Show("Se ha insertado su imagen");
             }
         }
     }
