@@ -57,7 +57,7 @@ namespace ShoesApp
             }
             else
             {
-                label17.Text = "No se pudo, ya fue";
+                label17.Text = "No se ha insertado el producto, no le falta algun campo por llenar?";
             }
             textBox1.Clear();
             textBox2.Clear();

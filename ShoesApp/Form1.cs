@@ -73,7 +73,7 @@ namespace ShoesApp
             }
             else
             {
-                MessageBox.Show("Algo paso, ya fue");
+                MessageBox.Show("A ocurrido un error al intentar deshabilitar el producto");
             }
         }
 

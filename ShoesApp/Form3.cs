@@ -164,6 +164,10 @@ namespace ShoesApp
             {
                 MessageBox.Show("Se ha insertado su imagen");
             }
+            else
+            {
+                MessageBox.Show("No se ha podido insertar la imagen, compruebe la extension.");
+            }
         }
     }
 }
