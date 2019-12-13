@@ -10,9 +10,8 @@
 namespace Shoes_Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ImagesProduct
+    public partial class JRCV1_GetImages_Result
     {
         public int IdImage { get; set; }
         public int IdProduct { get; set; }
@@ -20,7 +19,5 @@ namespace Shoes_Data
         public byte[] Image { get; set; }
         public System.DateTime DateUpdate { get; set; }
         public bool IsEnabled { get; set; }
-    
-        public virtual Products Products { get; set; }
     }
 }

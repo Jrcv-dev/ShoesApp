@@ -143,10 +143,10 @@
     </Key>
     <Property Name="IdImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdProduct" Type="int" Nullable="false" />
-    <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Image" Type="varbinary(max)" Nullable="false" />
-    <Property Name="DateUpdate" Type="datetime" />
-    <Property Name="IsEnabled" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Decription" Type="nvarchar(max)" />
+    <Property Name="Image" Type="image" Nullable="false" />
+    <Property Name="DateUpdate" Type="datetime" Nullable="false" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -355,6 +355,18 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_IDProducto">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ImagesProduct">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ProductsCatProviders">
     <End Role="CatProviders" Type="Self.CatProviders" Multiplicity="0..1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -387,18 +399,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="DetailProduct">
-        <PropertyRef Name="IdProduct" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductsImagesProduct">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ImagesProduct">
         <PropertyRef Name="IdProduct" />
       </Dependent>
     </ReferentialConstraint>
@@ -444,6 +444,9 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
   <Function Name="JRCV1_GetColors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="JRCV1_GetImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProduct" Type="int" Mode="In" />
+  </Function>
   <Function Name="JRCV1_GetSizes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="JRCV1_InserNewProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdType" Type="int" Mode="In" />
@@ -546,6 +549,10 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
       <End Role="CatTypeProduct" EntitySet="CatTypeProduct" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
+    <AssociationSet Name="FK_IDProducto" Association="Self.FK_IDProducto">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ImagesProduct" EntitySet="ImagesProduct" />
+    </AssociationSet>
     <AssociationSet Name="FK_ProductsCatProviders" Association="Self.FK_ProductsCatProviders">
       <End Role="CatProviders" EntitySet="CatProviders" />
       <End Role="Products" EntitySet="Products" />
@@ -557,10 +564,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_ProductsDetailProduct" Association="Self.FK_ProductsDetailProduct">
       <End Role="Products" EntitySet="Products" />
       <End Role="DetailProduct" EntitySet="DetailProduct" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductsImagesProduct" Association="Self.FK_ProductsImagesProduct">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="ImagesProduct" EntitySet="ImagesProduct" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductsSimilarProduct" Association="Self.FK_ProductsSimilarProduct">
       <End Role="Products" EntitySet="Products" />

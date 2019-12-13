@@ -125,5 +125,22 @@ namespace Shoes_Bussines
                 return false;
             }
         }
+        public List<Images> ObtenerImagenes(int id)
+        {
+            var data = new Shoes_Data.CapaData();
+            List<Images> Limages = new List<Images>();
+            var imagenes = data.GetImagesOfProduct(id);
+            foreach (var item in imagenes)
+            {
+                Limages.Add(new Images {idImage = item.IdImage,
+                idProducto = item.IdProduct,
+                Descripcion = item.Decription,
+                Image = item.Image,
+                DateUpdate = item.DateUpdate,
+                isEnabled = item.IsEnabled
+                });
+            }
+            return Limages;
+        }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DataProductsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DataProductsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CatBrands">
           <Key>
             <PropertyRef Name="IdBrand" />
@@ -148,10 +148,10 @@
           </Key>
           <Property Name="IdImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdProduct" Type="int" Nullable="false" />
-          <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Image" Type="varbinary(max)" Nullable="false" />
-          <Property Name="DateUpdate" Type="datetime" />
-          <Property Name="IsEnabled" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Decription" Type="nvarchar(max)" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="DateUpdate" Type="datetime" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -360,6 +360,18 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IDProducto">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagesProduct">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductsCatProviders">
           <End Role="CatProviders" Type="Self.CatProviders" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -392,18 +404,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="DetailProduct">
-              <PropertyRef Name="IdProduct" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductsImagesProduct">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ImagesProduct">
               <PropertyRef Name="IdProduct" />
             </Dependent>
           </ReferentialConstraint>
@@ -449,6 +449,9 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="JRCV1_GetColors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="JRCV1_GetImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProduct" Type="int" Mode="In" />
+        </Function>
         <Function Name="JRCV1_GetSizes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="JRCV1_InserNewProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdType" Type="int" Mode="In" />
@@ -551,6 +554,10 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             <End Role="CatTypeProduct" EntitySet="CatTypeProduct" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_IDProducto" Association="Self.FK_IDProducto">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ImagesProduct" EntitySet="ImagesProduct" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductsCatProviders" Association="Self.FK_ProductsCatProviders">
             <End Role="CatProviders" EntitySet="CatProviders" />
             <End Role="Products" EntitySet="Products" />
@@ -562,10 +569,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
           <AssociationSet Name="FK_ProductsDetailProduct" Association="Self.FK_ProductsDetailProduct">
             <End Role="Products" EntitySet="Products" />
             <End Role="DetailProduct" EntitySet="DetailProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductsImagesProduct" Association="Self.FK_ProductsImagesProduct">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="ImagesProduct" EntitySet="ImagesProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductsSimilarProduct" Association="Self.FK_ProductsSimilarProduct">
             <End Role="Products" EntitySet="Products" />
@@ -580,7 +583,8 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             <End Role="Qualification" EntitySet="Qualification" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataProductsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -746,11 +750,11 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
           </Key>
           <Property Name="IdImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdProduct" Type="Int32" Nullable="false" />
-          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
-          <Property Name="IsEnabled" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_ProductsImagesProduct" FromRole="ImagesProduct" ToRole="Products" />
+          <Property Name="DateUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_IDProducto" FromRole="ImagesProduct" ToRole="Products" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -779,7 +783,7 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
           <NavigationProperty Name="CatTypeProduct" Relationship="Self.FK_CatTypeProductProducts" FromRole="Products" ToRole="CatTypeProduct" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_ProductsComments" FromRole="Products" ToRole="Comments" />
           <NavigationProperty Name="DetailProduct" Relationship="Self.FK_ProductsDetailProduct" FromRole="Products" ToRole="DetailProduct" />
-          <NavigationProperty Name="ImagesProduct" Relationship="Self.FK_ProductsImagesProduct" FromRole="Products" ToRole="ImagesProduct" />
+          <NavigationProperty Name="ImagesProduct" Relationship="Self.FK_IDProducto" FromRole="Products" ToRole="ImagesProduct" />
           <NavigationProperty Name="SimilarProduct" Relationship="Self.FK_ProductsSimilarProduct" FromRole="Products" ToRole="SimilarProduct" />
           <NavigationProperty Name="SizeForProduct" Relationship="Self.FK_ProductsSizeForProduct" FromRole="Products" ToRole="SizeForProduct" />
           <NavigationProperty Name="Qualification" Relationship="Self.FK_QualificationProducts" FromRole="Products" ToRole="Qualification" />
@@ -1009,7 +1013,7 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductsImagesProduct">
+        <Association Name="FK_IDProducto">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1133,7 +1137,7 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             <End Role="Products" EntitySet="Products" />
             <End Role="DetailProduct" EntitySet="DetailProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductsImagesProduct" Association="Self.FK_ProductsImagesProduct">
+          <AssociationSet Name="FK_IDProducto" Association="Self.FK_IDProducto">
             <End Role="Products" EntitySet="Products" />
             <End Role="ImagesProduct" EntitySet="ImagesProduct" />
           </AssociationSet>
@@ -1153,6 +1157,11 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="JRCV1_GetColors" ReturnType="Collection(DataProductsModel.JRCV1_GetColors_Result)" />
+          <FunctionImport Name="JRCV1_GetImages" ReturnType="Collection(DataProductsModel.JRCV1_GetImages_Result)">
+            <Parameter Name="IdProduct" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="JRCV1_GetSizes" ReturnType="Collection(DataProductsModel.JRCV1_GetSizes_Result)" />
           <FunctionImport Name="JRCV1_InserNewProduct">
             <Parameter Name="IdType" Mode="In" Type="Int32" />
             <Parameter Name="IdColor" Mode="In" Type="Int32" />
@@ -1174,8 +1183,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="JRCV1_GetColors" ReturnType="Collection(DataProductsModel.JRCV1_GetColors_Result)" />
-          <FunctionImport Name="JRCV1_GetSizes" ReturnType="Collection(DataProductsModel.JRCV1_GetSizes_Result)" />
           <FunctionImport Name="JRCV1_UpdateProduct">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="IdColor" Mode="In" Type="Int32" />
@@ -1184,6 +1191,29 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             <Parameter Name="Description" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="JRCV1_GetColors_Result">
+          <Property Type="Int32" Name="IdColor" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="HexaDecimal" Nullable="false" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="JRCV1_GetImages_Result">
+          <Property Type="Int32" Name="IdImage" Nullable="false" />
+          <Property Type="Int32" Name="IdProduct" Nullable="false" />
+          <Property Type="String" Name="Decription" Nullable="true" />
+          <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="DateUpdate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="IsEnabled" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="JRCV1_GetSizes_Result">
+          <Property Type="Int32" Name="IdSize" Nullable="false" />
+          <Property Type="Int32" Name="IdType" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" />
+          <Property Type="String" Name="Unity" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="Value" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="JRCV1_SearchShoesProduct_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="IdType" Nullable="true" />
@@ -1201,21 +1231,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
           <Property Type="Boolean" Name="IsEnabled" Nullable="false" />
           <Property Type="String" Name="Keywords" Nullable="true" />
           <Property Type="DateTime" Name="DateUpdate" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="JRCV1_GetColors_Result">
-          <Property Type="Int32" Name="IdColor" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" />
-          <Property Type="String" Name="Description" Nullable="false" />
-          <Property Type="String" Name="HexaDecimal" Nullable="false" />
-          <Property Type="Boolean" Name="IsEnable" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="JRCV1_GetSizes_Result">
-          <Property Type="Int32" Name="IdSize" Nullable="false" />
-          <Property Type="Int32" Name="IdType" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="false" />
-          <Property Type="String" Name="Unity" Nullable="false" />
-          <Property Type="String" Name="Description" Nullable="false" />
-          <Property Type="String" Name="Value" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1449,6 +1464,41 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="JRCV1_DeleteLogicIsEnabled" FunctionName="DataProductsModel.Store.JRCV1_DeleteLogicIsEnabled" />
+          <FunctionImportMapping FunctionImportName="JRCV1_GetColors" FunctionName="DataProductsModel.Store.JRCV1_GetColors">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetColors_Result">
+                <ScalarProperty Name="IdColor" ColumnName="IdColor" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="HexaDecimal" ColumnName="HexaDecimal" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="JRCV1_GetImages" FunctionName="DataProductsModel.Store.JRCV1_GetImages">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetImages_Result">
+                <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="JRCV1_GetSizes" FunctionName="DataProductsModel.Store.JRCV1_GetSizes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetSizes_Result">
+                <ScalarProperty Name="IdSize" ColumnName="IdSize" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Unity" ColumnName="Unity" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="JRCV1_InserNewProduct" FunctionName="DataProductsModel.Store.JRCV1_InserNewProduct" />
           <FunctionImportMapping FunctionImportName="JRCV1_SearchShoesProduct" FunctionName="DataProductsModel.Store.JRCV1_SearchShoesProduct">
             <ResultMapping>
@@ -1469,29 +1519,6 @@ warning 6002: The table/view 'DataProducts.sys.database_firewall_rules' does not
                 <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
                 <ScalarProperty Name="Keywords" ColumnName="Keywords" />
                 <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="JRCV1_GetColors" FunctionName="DataProductsModel.Store.JRCV1_GetColors">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetColors_Result">
-                <ScalarProperty Name="IdColor" ColumnName="IdColor" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="HexaDecimal" ColumnName="HexaDecimal" />
-                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="JRCV1_GetSizes" FunctionName="DataProductsModel.Store.JRCV1_GetSizes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetSizes_Result">
-                <ScalarProperty Name="IdSize" ColumnName="IdSize" />
-                <ScalarProperty Name="IdType" ColumnName="IdType" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Unity" ColumnName="Unity" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

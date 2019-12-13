@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,21 @@ namespace ShoesApp
             {
                 comboBox2.Items.Add(item.Code);
             }
+            var images = capBussines.ObtenerImagenes(ID);
+            foreach (var item in images)
+            {
+                MemoryStream ms = new MemoryStream(item.Image);
+                PictureBox p = new PictureBox()
+                {
+                    Image = new Bitmap(ms),
+                    BorderStyle = BorderStyle.Fixed3D,
+                    Height = 500,
+                    Width = 900,
+                    Top = Height * flowLayoutPanel1.Controls.Count
+                };
+                flowLayoutPanel1.Controls.Add(p);
+
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,31 +59,71 @@ namespace ShoesApp
             p.id = int.Parse(textBox2.Text);
             p.Nombre = textBox1.Text;
             var Color = comboBox1.Text;
-            if(Color == "Azul")
+            if (Color == "Azul")
             {
                 p.idColor = 1;
-            }else if(Color == "Rojo")
+            }
+            else if (Color == "Rojo")
             {
                 p.idColor = 2;
-            }else if(Color == "Verde")
+            }
+            else if (Color == "Verde")
             {
                 p.idColor = 3;
-            }else if(Color == "Negro")
+            }
+            else if (Color == "Negro")
             {
                 p.idColor = 4;
-            }else if(Color == "Blanco")
+            }
+            else if (Color == "Blanco")
             {
                 p.idColor = 5;
             }
             p.Descripcion = richTextBox1.Text;
             var estado = capBussines.UpdateProduct(p);
-            if(estado == false)
+            if (estado == false)
             {
                 MessageBox.Show("No se actualizo el producto");
             }
             else
             {
                 MessageBox.Show("El producto ha sido actualizado");
+            }
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            /* PictureBox p = new PictureBox()
+             {
+                 BorderStyle = BorderStyle.Fixed3D,
+                 Height = 600,
+                 Width = 500,
+                 Top = Height * flowLayoutPanel1.Controls.Count
+             };
+             pictureBox1.Controls.Add(p);
+             OpenFileDialog OPf = new OpenFileDialog();
+             if(OPf.ShowDialog() == DialogResult.OK)
+             {
+                 p.Image = new Bitmap(OPf.OpenFile());
+             }
+         }*/
+            OpenFileDialog Opf = new OpenFileDialog();
+            try
+            {
+                if (Opf.ShowDialog() == DialogResult.OK)
+                {
+                    string imagen = Opf.FileName;
+                    pictureBox1.Image = Image.FromFile(imagen);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido");
             }
         }
     }

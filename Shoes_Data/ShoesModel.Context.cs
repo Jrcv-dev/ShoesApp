@@ -60,6 +60,25 @@ namespace Shoes_Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("JRCV1_DeleteLogicIsEnabled", nombreParameter, idParameter);
         }
     
+        public virtual ObjectResult<JRCV1_GetColors_Result> JRCV1_GetColors()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_GetColors_Result>("JRCV1_GetColors");
+        }
+    
+        public virtual ObjectResult<JRCV1_GetImages_Result> JRCV1_GetImages(Nullable<int> idProduct)
+        {
+            var idProductParameter = idProduct.HasValue ?
+                new ObjectParameter("IdProduct", idProduct) :
+                new ObjectParameter("IdProduct", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_GetImages_Result>("JRCV1_GetImages", idProductParameter);
+        }
+    
+        public virtual ObjectResult<JRCV1_GetSizes_Result> JRCV1_GetSizes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_GetSizes_Result>("JRCV1_GetSizes");
+        }
+    
         public virtual int JRCV1_InserNewProduct(Nullable<int> idType, Nullable<int> idColor, Nullable<int> idBrand, Nullable<int> idProvider, Nullable<int> idCatalog, string tittle, string nombre, string descripcion, string observations, Nullable<decimal> priceDistributor, Nullable<decimal> priceClient, Nullable<decimal> priceMember, Nullable<bool> isEnabled, string keywords, Nullable<System.DateTime> dateUpdate)
         {
             var idTypeParameter = idType.HasValue ?
@@ -136,16 +155,6 @@ namespace Shoes_Data
                 new ObjectParameter("Nombre", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_SearchShoesProduct_Result>("JRCV1_SearchShoesProduct", idParameter, nombreParameter);
-        }
-    
-        public virtual ObjectResult<JRCV1_GetColors_Result> JRCV1_GetColors()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_GetColors_Result>("JRCV1_GetColors");
-        }
-    
-        public virtual ObjectResult<JRCV1_GetSizes_Result> JRCV1_GetSizes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<JRCV1_GetSizes_Result>("JRCV1_GetSizes");
         }
     
         public virtual int JRCV1_UpdateProduct(Nullable<int> id, Nullable<int> idColor, Nullable<int> idCatalog, string nombre, string description)

@@ -227,6 +227,41 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="JRCV1_DeleteLogicIsEnabled" FunctionName="DataProductsModel.Store.JRCV1_DeleteLogicIsEnabled" />
+    <FunctionImportMapping FunctionImportName="JRCV1_GetColors" FunctionName="DataProductsModel.Store.JRCV1_GetColors">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetColors_Result">
+          <ScalarProperty Name="IdColor" ColumnName="IdColor" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="HexaDecimal" ColumnName="HexaDecimal" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="JRCV1_GetImages" FunctionName="DataProductsModel.Store.JRCV1_GetImages">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetImages_Result">
+          <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Decription" ColumnName="Decription" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="JRCV1_GetSizes" FunctionName="DataProductsModel.Store.JRCV1_GetSizes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetSizes_Result">
+          <ScalarProperty Name="IdSize" ColumnName="IdSize" />
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Unity" ColumnName="Unity" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="JRCV1_InserNewProduct" FunctionName="DataProductsModel.Store.JRCV1_InserNewProduct" />
     <FunctionImportMapping FunctionImportName="JRCV1_SearchShoesProduct" FunctionName="DataProductsModel.Store.JRCV1_SearchShoesProduct">
       <ResultMapping>
@@ -247,29 +282,6 @@
           <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
           <ScalarProperty Name="Keywords" ColumnName="Keywords" />
           <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="JRCV1_GetColors" FunctionName="DataProductsModel.Store.JRCV1_GetColors">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetColors_Result">
-          <ScalarProperty Name="IdColor" ColumnName="IdColor" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="HexaDecimal" ColumnName="HexaDecimal" />
-          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="JRCV1_GetSizes" FunctionName="DataProductsModel.Store.JRCV1_GetSizes">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DataProductsModel.JRCV1_GetSizes_Result">
-          <ScalarProperty Name="IdSize" ColumnName="IdSize" />
-          <ScalarProperty Name="IdType" ColumnName="IdType" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Unity" ColumnName="Unity" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

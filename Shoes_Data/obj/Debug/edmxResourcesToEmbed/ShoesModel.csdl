@@ -162,11 +162,11 @@
     </Key>
     <Property Name="IdImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdProduct" Type="Int32" Nullable="false" />
-    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
-    <Property Name="IsEnabled" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_ProductsImagesProduct" FromRole="ImagesProduct" ToRole="Products" />
+    <Property Name="DateUpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_IDProducto" FromRole="ImagesProduct" ToRole="Products" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -195,7 +195,7 @@
     <NavigationProperty Name="CatTypeProduct" Relationship="Self.FK_CatTypeProductProducts" FromRole="Products" ToRole="CatTypeProduct" />
     <NavigationProperty Name="Comments" Relationship="Self.FK_ProductsComments" FromRole="Products" ToRole="Comments" />
     <NavigationProperty Name="DetailProduct" Relationship="Self.FK_ProductsDetailProduct" FromRole="Products" ToRole="DetailProduct" />
-    <NavigationProperty Name="ImagesProduct" Relationship="Self.FK_ProductsImagesProduct" FromRole="Products" ToRole="ImagesProduct" />
+    <NavigationProperty Name="ImagesProduct" Relationship="Self.FK_IDProducto" FromRole="Products" ToRole="ImagesProduct" />
     <NavigationProperty Name="SimilarProduct" Relationship="Self.FK_ProductsSimilarProduct" FromRole="Products" ToRole="SimilarProduct" />
     <NavigationProperty Name="SizeForProduct" Relationship="Self.FK_ProductsSizeForProduct" FromRole="Products" ToRole="SizeForProduct" />
     <NavigationProperty Name="Qualification" Relationship="Self.FK_QualificationProducts" FromRole="Products" ToRole="Qualification" />
@@ -425,7 +425,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProductsImagesProduct">
+  <Association Name="FK_IDProducto">
     <End Role="Products" Type="Self.Products" Multiplicity="1" />
     <End Role="ImagesProduct" Type="Self.ImagesProduct" Multiplicity="*" />
     <ReferentialConstraint>
@@ -549,7 +549,7 @@
       <End Role="Products" EntitySet="Products" />
       <End Role="DetailProduct" EntitySet="DetailProduct" />
     </AssociationSet>
-    <AssociationSet Name="FK_ProductsImagesProduct" Association="Self.FK_ProductsImagesProduct">
+    <AssociationSet Name="FK_IDProducto" Association="Self.FK_IDProducto">
       <End Role="Products" EntitySet="Products" />
       <End Role="ImagesProduct" EntitySet="ImagesProduct" />
     </AssociationSet>
@@ -569,6 +569,11 @@
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="JRCV1_GetColors" ReturnType="Collection(DataProductsModel.JRCV1_GetColors_Result)" />
+    <FunctionImport Name="JRCV1_GetImages" ReturnType="Collection(DataProductsModel.JRCV1_GetImages_Result)">
+      <Parameter Name="IdProduct" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="JRCV1_GetSizes" ReturnType="Collection(DataProductsModel.JRCV1_GetSizes_Result)" />
     <FunctionImport Name="JRCV1_InserNewProduct">
       <Parameter Name="IdType" Mode="In" Type="Int32" />
       <Parameter Name="IdColor" Mode="In" Type="Int32" />
@@ -590,8 +595,6 @@
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="Nombre" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="JRCV1_GetColors" ReturnType="Collection(DataProductsModel.JRCV1_GetColors_Result)" />
-    <FunctionImport Name="JRCV1_GetSizes" ReturnType="Collection(DataProductsModel.JRCV1_GetSizes_Result)" />
     <FunctionImport Name="JRCV1_UpdateProduct">
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="IdColor" Mode="In" Type="Int32" />
@@ -600,6 +603,29 @@
       <Parameter Name="Description" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="JRCV1_GetColors_Result">
+    <Property Type="Int32" Name="IdColor" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="String" Name="HexaDecimal" Nullable="false" />
+    <Property Type="Boolean" Name="IsEnable" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="JRCV1_GetImages_Result">
+    <Property Type="Int32" Name="IdImage" Nullable="false" />
+    <Property Type="Int32" Name="IdProduct" Nullable="false" />
+    <Property Type="String" Name="Decription" Nullable="true" />
+    <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" />
+    <Property Type="DateTime" Name="DateUpdate" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="IsEnabled" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="JRCV1_GetSizes_Result">
+    <Property Type="Int32" Name="IdSize" Nullable="false" />
+    <Property Type="Int32" Name="IdType" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" />
+    <Property Type="String" Name="Unity" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="String" Name="Value" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="JRCV1_SearchShoesProduct_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
     <Property Type="Int32" Name="IdType" Nullable="true" />
@@ -617,20 +643,5 @@
     <Property Type="Boolean" Name="IsEnabled" Nullable="false" />
     <Property Type="String" Name="Keywords" Nullable="true" />
     <Property Type="DateTime" Name="DateUpdate" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="JRCV1_GetColors_Result">
-    <Property Type="Int32" Name="IdColor" Nullable="false" />
-    <Property Type="String" Name="Name" Nullable="false" />
-    <Property Type="String" Name="Description" Nullable="false" />
-    <Property Type="String" Name="HexaDecimal" Nullable="false" />
-    <Property Type="Boolean" Name="IsEnable" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="JRCV1_GetSizes_Result">
-    <Property Type="Int32" Name="IdSize" Nullable="false" />
-    <Property Type="Int32" Name="IdType" Nullable="false" />
-    <Property Type="String" Name="Code" Nullable="false" />
-    <Property Type="String" Name="Unity" Nullable="false" />
-    <Property Type="String" Name="Description" Nullable="false" />
-    <Property Type="String" Name="Value" Nullable="false" />
   </ComplexType>
 </Schema>
