@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ namespace Shoes_Data
                     obj.DateUpdate);
                 return true;
             }
-            catch (System.Exception)
+            catch (System.Exception E)
             {
                 return false;
             }
